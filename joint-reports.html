@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>联合学术报告 | 数交叉·智融合</title>
+  <title>数交叉·智融合 | Mathematics × Information Intelligence</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,9 +16,9 @@
       </span>
     </a>
     <nav class="top-nav" aria-label="主导航">
-      <a href="index.html#about">平台简介</a>
-      <a href="index.html#latest">最新活动</a>
-      <a class="current" href="joint-reports.html">联合学术报告</a>
+      <a href="#about">平台简介</a>
+      <a href="#latest">最新活动</a>
+      <a href="joint-reports.html">联合学术报告</a>
       <!--
       <a href="summer-school.html">暑期学校</a>
       <a href="conferences.html">国际会议</a>
@@ -27,271 +27,129 @@
   </header>
 
   <main>
-    <section class="page-title report-title">
-      <p class="eyebrow">Joint Academic Talk Series</p>
-      <h1>联合学术报告</h1>
-      <p>
-        将持续发布报告嘉宾、报告题目、时间地点、摘要简介及海报资料，欢迎广大师生和相关领域学者关注并参与交流。
-      </p>
+    <section class="hero academic-hero" id="about">
+      <div class="hero-copy">
+            <p class="eyebrow">XDU × ZJU × USTC Academic Initiative</p>
+        <h1>数交叉·智融合</h1>
+        <p class="hero-en">Mathematics × Information Intelligence</p>
+        <div class="hero-actions">
+          <a class="button primary" href="joint-reports.html">查看联合学术报告</a>
+          <!--
+          <a class="button secondary" href="summer-school.html">查看暑期学校</a>
+          <a class="button secondary" href="conferences.html">查看国际会议</a>
+          -->
+        </div>
+      </div>
     </section>
 
-    <section class="section report-section">
-      <div class="section-heading compact-heading">
-        <p class="eyebrow">Speakers</p>
-        <h2>报告嘉宾</h2>
-        <p>可通过关键词、年份筛选和分页浏览。</p>
+    <section class="section intro-section">
+      <div class="intro-grid">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>平台简介</h2>
+        </div>
+        <div class="intro-body">
+          <p>
+            “数交叉·智融合”由葛根年教授倡议发起，由西安电子科技大学、浙江大学、中国科学技术大学联合举办，
+            旨在面向数学与信息科学深度交叉的发展趋势，推动数学基础理论、信息科学方法与智能技术应用之间的有机融合。
+            该学术平台聚焦编码理论、组合数学、信息论、信息安全、理论计算机、人工智能、数据科学等多领域交叉方向，
+            致力于搭建开放、持续、高水平的学术交流与合作平台，促进不同学科背景的学者了解国际前沿动态、
+            拓展交叉研究视野、凝练重要科学问题，并推动后续实质性学术合作，为数学与信息科学交叉领域的长期发展凝聚学术力量。
+          </p>
+        </div>
       </div>
-      <div class="list-controls" aria-label="报告名单筛选">
-        <label class="search-box">
-          <span>Search</span>
-          <input id="speakerSearch" type="search" placeholder="Search name, affiliation, topic">
-        </label>
-        <label class="select-box">
-          <span>Year</span>
-          <select id="yearFilter">
-            <option value="all">All years</option>
-            <option value="2026">2026</option>
-          </select>
-        </label>
-        <label class="select-box">
-          <span>Show</span>
-          <select id="pageSize">
-            <option value="10">10 / page</option>
-            <option value="20">20 / page</option>
-            <option value="all">All</option>
-          </select>
-        </label>
+    </section>
+
+    <section class="latest-band" id="latest">
+      <div class="latest-heading">
+        <p class="eyebrow">Latest Activities</p>
+        <h2>最新活动</h2>
+      </div>
+      <div class="activity-list">
+        <a class="activity-item" href="joint-reports.html">
+          <time>2026-06-24</time>
+          <span class="activity-type">联合学术报告</span>
+          <strong>李才恒教授: 题目待定</strong>
+          <em>查看详情</em>
+        </a>
         <!--
-        <span class="result-count" id="resultCount">0 speakers</span>
+        <a class="activity-item muted" href="summer-school.html">
+          <time>2026 Summer</time>
+          <span class="activity-type">暑期学校</span>
+          <strong>专题课程与讲义信息即将发布</strong>
+          <em>筹备中</em>
+        </a>
+        <a class="activity-item muted" href="conferences.html">
+          <time>To be announced</time>
+          <span class="activity-type">国际会议</span>
+          <strong>会议主题、嘉宾与注册信息预留入口</strong>
+          <em>待开放</em>
+        </a>
         -->
       </div>
-      <div class="table-wrap" aria-label="联合学术报告参会学者名单">
-        <table class="speaker-table">
-          <thead>
-            <tr>
-              <th>时间/Time</th>
-              <th>学者姓名/Speaker</th>
-              <th>单位/Affiliation</th>
-              <th>报告题目/Title</th>
-              <th>状态/Status</th>
-            </tr>
-          </thead>
-          <tbody>
-             <tr data-report-id="report-3" data-year="2026" data-date="2026-06-25" data-status="upcoming" data-name="邢超平" data-affiliation="上海交通大学" data-topic="报告题目待更新">
-              <td>2026-06-25</td>
-              <td>
-              <div class="zh">邢超平教授</div>
-              <div class="en">Prof. Chaoping Xing</div>
-              </td>
-              <td>
-              <div class="zh">上海交通大学</div>
-              <div class="en">Shanghai Jiao Tong Univeristy</div>
-              </td>
-              <td>
-              <div class="zh">题目待更新</div>
-              <div class="en">TBA</div>
-              </td>
-              <td><span class="table-status">Upcoming</span></td>
-            </tr>
+    </section>
 
-            <tr data-report-id="report-1" data-year="2026" data-date="2026-06-24" data-status="upcoming" data-name="李才恒" data-affiliation="南方科技大学" data-topic="报告题目待更新">
-              <td>2026-06-24</td>
-              <td>
-              <div class="zh">李才恒教授</div>
-              <div class="en">Prof. Caiheng Li</div>
-              </td>
-              <td>
-              <div class="zh">南方科技大学</div>
-              <div class="en">Southern University of Science and Technology</div>
-              </td>
-              <td>
-              <div class="zh">题目待更新</div>
-              <div class="en">TBA</div>
-              </td>
-              <td><span class="table-status">Upcoming</span></td>
-            </tr>
-            
-            <tr data-report-id="report-2" data-year="2026" data-date="2026-09-02" data-status="upcoming" data-name="宗传明" data-affiliation="天津大学" data-topic="报告题目待更新">
-              <td>2026-09-02</td>
-              <td>
-              <div class="zh">宗传明教授</div>
-              <div class="en">Prof. Chuanming Zong</div>
-              </td>
-              <td>
-              <div class="zh">天津大学</div>
-              <div class="en">Tianjin University</div>
-              </td>
-              <td>
-              <div class="zh">题目待更新</div>
-              <div class="en">TBA</div>
-              </td>
-              <td><span class="table-status">Upcoming</span></td>
-            </tr>
-
-            <!--
-            <tr data-report-id="report-3" data-year="2026" data-date="" data-status="planned" data-name="Speaker Name" data-affiliation="University / Research Institute" data-topic="Mathematics and Information Intelligence">
-              <td>2026-XX-XX</td>
-              <td>Prof. / Dr. Speaker Name</td>
-              <td>University / Research Institute</td>
-              <td>Mathematics and Information Intelligence</td>
-              <td><span class="table-status muted">Planned</span></td>
-            </tr>
-            -->
-          </tbody>
-        </table>
+    <section class="section" id="programs">
+      <div class="section-heading">
+        <p class="eyebrow">Programs</p>
+        <h2>学术项目</h2>
+        <p></p>
       </div>
-      <div class="pagination" aria-label="名单分页">
-        <button type="button" id="prevPage">上一页</button>
-        <span id="pageInfo">Page 1 / 1</span>
-        <button type="button" id="nextPage">下一页</button>
-      </div>
-
-      <div class="section-heading compact-heading report-detail-heading">
-        <p class="eyebrow">Talks</p>
-        <h2>报告详情</h2>
-      </div>
-
-      <div class="speaker-list report-list" id="speakerList">
-
-         <article class="speaker-card report-card" data-report-id="report-3" data-year="2026" data-date="2026-06-25" data-status="upcoming" data-name="邢超平" data-affiliation="上海交通大学" data-topic="报告题目待更新">
-          <a class="poster-frame" href="assets/poster-blank.png" aria-label="查看海报">
-            <img src="assets/poster-blank.png" alt="联合报告海报模板">
-          </a>
-          <div class="report-content">
-            <div class="speaker-meta">
-              <span class="date">2026-06-25</span>
-              <span class="status">Upcoming</span>
-            </div>
-            <h2>邢超平教授 / Prof. Chaoping Xing</h2>
-            <p class="affiliation">上海交通大学 / Shanghai Jiao Tong University</p>
-            <h3>报告题目待更新 / TBA</h3>
-            <dl class="report-details">
-              <div>
-                <dt>Time</dt>
-                <dd>2026-06-25 / 15:00-16:00</dd>
-              </div>
-              <div>
-                <dt>Venue</dt>
-                <dd>线上 / Online</dd>
-              </div>
-            </dl>
-            <p class="summary">
-              待更新。
-            </p>
-            <div class="card-actions">
-              <a href="assets/poster-blank.png" aria-label="查看海报">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="speaker-card report-card" data-report-id="report-1" data-year="2026" data-date="2026-06-24" data-status="upcoming" data-name="李才恒" data-affiliation="南方科技大学" data-topic="报告题目待更新">
-          <a class="poster-frame" href="assets/poster-blank.png" aria-label="查看海报">
-            <img src="assets/poster-blank.png" alt="联合报告海报模板">
-          </a>
-          <div class="report-content">
-            <div class="speaker-meta">
-              <span class="date">2026-06-24</span>
-              <span class="status">Upcoming</span>
-            </div>
-            <h2>李才恒教授 / Prof. Caiheng Li</h2>
-            <p class="affiliation">南方科技大学 / Southern University of Science and Technology</p>
-            <h3>报告题目待更新 / TBA</h3>
-            <dl class="report-details">
-              <div>
-                <dt>Time</dt>
-                <dd>2026-06-24 / 15:00-16:00</dd>
-              </div>
-              <div>
-                <dt>Venue</dt>
-                <dd>线上/线下</dd>
-              </div>
-            </dl>
-            <p class="summary">
-              待更新。
-            </p>
-            <div class="card-actions">
-              <a href="assets/poster-blank.png" aria-label="查看海报">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="speaker-card report-card" data-report-id="report-2" data-year="2026" data-date="2026-09-02" data-status="upcoming" data-name="宗传明" data-affiliation="天津大学" data-topic="报告题目待更新">
-          <a class="poster-frame empty-poster" href="#" aria-label="海报待上传">
-            <span>Poster<br>Coming Soon</span>
-          </a>
-          <div class="report-content">
-            <div class="speaker-meta">
-              <span class="date">2026-09-02</span>
-              <span class="status">Upcoming</span>
-            </div>
-            <h2>宗传明教授 / Prof. Chuanming Zong</h2>
-            <p class="affiliation">天津大学 / Tianjin University</p>
-            <h3>报告题目待更新 / TBA</h3>
-            <dl class="report-details">
-              <div>
-                <dt>Time</dt>
-                <dd>2026-09-02</dd>
-              </div>
-              <div>
-                <dt>Venue</dt>
-                <dd>线上/线下</dd>
-              </div>
-            </dl>
-            <p class="summary">
-              待更新。
-            </p>
-            <div class="card-actions">
-              <a href="#" aria-label="海报待上传">Details</a>
-            </div>
-          </div>
-        </article>
+      <div class="module-grid">
+        <a class="module-card active" href="joint-reports.html">
+          <span class="module-index">01</span>
+          <h3>联合学术报告</h3>
+          <p>邀请数学、信息科学、智能技术及相关交叉领域的国内外专家学者作专题报告，分享前沿研究进展，促进多学科交叉融合与学术合作。</p>
+          <span class="module-link">查看详情</span>
+        </a>
         <!--
-        <article class="speaker-card report-card" data-report-id="report-3" data-year="2026" data-date=2026-06-24"" data-status="planned" data-name="Firstname Lastname" data-affiliation="Department / Institute, University" data-topic="Talk Title">
-          <a class="poster-frame" href="assets/poster-template.png" aria-label="查看报告海报">
-            <img src="assets/poster-template.png" alt="联合报告海报模板">
-          </a>
-          <div class="report-content">
-            <div class="speaker-meta">
-              <span class="date">2026-XX-XX</span>
-              <span class="status">Planned</span>
-            </div>
-            <h2>Prof. / Dr. Firstname Lastname</h2>
-            <p class="affiliation">Department / Institute, University</p>
-            <h3>Talk Title</h3>
-            <dl class="report-details">
-              <div>
-                <dt>Time</dt>
-                <dd>XX:XX-XX:XX (UTC+8)</dd>
-              </div>
-              <div>
-                <dt>Venue</dt>
-                <dd>Room XXX / Online</dd>
-              </div>
-            </dl>
-            <p class="summary">
-              Add a short abstract or keyword summary here. This area can record the speaker's research direction,
-              interdisciplinary background, and the main theme of the report.
-            </p>
-            <div class="card-actions">
-              <a href="assets/poster-template.png" aria-label="查看海报">Details</a>
-            </div>
-          </div>
-        </article>
-        -->     
+        <a class="module-card muted" href="summer-school.html">
+          <span class="module-index">02</span>
+          <h3>暑期学校</h3>
+          <p>预留课程、讲义、报名信息与日程发布入口，便于后续扩展。</p>
+          <span class="module-link">查看预留页</span>
+        </a>
+        <a class="module-card muted" href="conferences.html">
+          <span class="module-index">03</span>
+          <h3>国际会议</h3>
+          <p>预留会议主题、嘉宾、征稿、注册与会务信息入口。</p>
+          <span class="module-link">查看预留页</span>
+        </a>
+        -->
       </div>
-      <div class="pagination" aria-label="报告详情分页">
-        <button type="button" id="prevReportPage">上一页</button>
-        <span id="reportPageInfo">Page 1 / 1</span>
-        <button type="button" id="nextReportPage">下一页</button>
+    </section>
+
+    <section class="section compact">
+      <div class="section-heading">
+        <p class="eyebrow">Organizers</p>
+        <h2>联合建设单位</h2>
+      </div>
+      <div class="school-strip" aria-label="联合建设单位标识">
+        <img src="assets/xidian.png" alt="西安电子科技大学">
+        <img src="assets/zju.png" alt="浙江大学">
+        <img src="assets/ustc.png" alt="中国科学技术大学">
+      </div>
+    </section>
+
+    <section class="section compact contact-section" id="contact">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2>联系我们</h2>
+      </div>
+      <div class="organizer-card">
+        <h3>组织者</h3>
+        <ul class="organizer-list">
+          <li><strong>徐子翔</strong><span>浙江大学</span><a href="mailto:zixiangxu@zju.edu.cn">zixiangxu@zju.edu.cn</a></li>
+          <li><strong>余文俊</strong><span>西安电子科技大学</span><a href="mailto:yuwenjun@xidian.edu.cn">yuwenjun@xidian.edu.cn</a></li>
+          <li><strong>张先得</strong><span>中国科学技术大学</span><a href="mailto:drzhangx@ustc.edu.cn">drzhangx@ustc.edu.cn</a></li>
+        </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <span>数交叉·智融合</span>
-    <span><a href="index.html">Back to Home</a></span>
+    <span>Mathematics × Information Intelligence</span>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

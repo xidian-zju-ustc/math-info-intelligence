@@ -287,7 +287,7 @@ p {
 
 .activity-item {
   display: grid;
-  grid-template-columns: 120px 86px minmax(0, 1fr) 72px;
+  grid-template-columns: 120px 120px minmax(0, 1fr) 72px;
   gap: 16px;
   align-items: center;
   padding: 12px 0;
@@ -314,11 +314,13 @@ p {
 .activity-type {
   display: inline-flex;
   justify-content: center;
+  min-width: 100px;
   padding: 3px 8px;
   border-radius: 5px;
   color: var(--blue);
   font-size: 13px;
   font-weight: 900;
+  white-space: nowrap;
   background: rgba(40, 116, 200, 0.1);
 }
 
