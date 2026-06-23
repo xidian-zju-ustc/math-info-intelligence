@@ -6,43 +6,109 @@ const pageSizeSelect = document.querySelector("#pageSize");
 const prevPageButton = document.querySelector("#prevPage");
 const nextPageButton = document.querySelector("#nextPage");
 const pageInfo = document.querySelector("#pageInfo");
-const tableRows = [...document.querySelectorAll(".speaker-table tbody tr")];
+const tableRows = [...document.querySelectorAll(".speaker-table tbody tr[data-report-id]")];
 let currentPage = 1;
 
-function statusRank(status) {
-  const ranks = {
-    upcoming: 0,
-    ongoing: 1,
-    recent: 2,
-    completed: 3,
-    planned: 4
-  };
-  return ranks[status] ?? 9;
+const reportGroupLabels = {
+  0: "Upcoming",
+  1: "Previous",
+  2: "Unscheduled"
+};
+
+function parseReportDate(value) {
+  if (!value) return null;
+  const parts = value.split("-").map(Number);
+  if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+  return new Date(parts[0], parts[1] - 1, parts[2]);
 }
 
 function dateRank(value) {
-  if (!value) return Number.NEGATIVE_INFINITY;
-  const stamp = Date.parse(`${value}T00:00:00`);
-  return Number.isNaN(stamp) ? Number.NEGATIVE_INFINITY : stamp;
+  const date = parseReportDate(value);
+  return date ? date.getTime() : Number.NEGATIVE_INFINITY;
+}
+
+function todayStart() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+}
+
+function reportGroup(entry) {
+  const status = (entry.dataset.status || "").toLowerCase();
+  if (["upcoming", "ongoing", "planned"].includes(status)) return 0;
+  if (["recent", "completed", "previous", "past"].includes(status)) return 1;
+
+  const stamp = dateRank(entry.dataset.date);
+  if (stamp === Number.NEGATIVE_INFINITY) return 2;
+  return stamp >= todayStart() ? 0 : 1;
 }
 
 function compareEntries(a, b) {
-  const statusDiff = statusRank(a.dataset.status) - statusRank(b.dataset.status);
-  if (statusDiff !== 0) return statusDiff;
+  const groupDiff = reportGroup(a) - reportGroup(b);
+  if (groupDiff !== 0) return groupDiff;
 
-  const dateDiff = dateRank(b.dataset.date) - dateRank(a.dataset.date);
+  const group = reportGroup(a);
+  const aDate = dateRank(a.dataset.date);
+  const bDate = dateRank(b.dataset.date);
+  const dateDiff = group === 0 ? aDate - bDate : bDate - aDate;
   if (dateDiff !== 0) return dateDiff;
 
   return (a.dataset.reportId || "").localeCompare(b.dataset.reportId || "");
 }
 
+function createTableGroupRow(group) {
+  const row = document.createElement("tr");
+  row.className = "report-group-row";
+  row.dataset.reportGroup = String(group);
+
+  const cell = document.createElement("td");
+  cell.colSpan = 5;
+  cell.innerHTML = `<span>${reportGroupLabels[group]}</span>`;
+  row.appendChild(cell);
+
+  return row;
+}
+
+function createCardGroupHeading(group) {
+  const heading = document.createElement("div");
+  heading.className = "report-group-heading";
+  heading.dataset.reportGroup = String(group);
+  heading.innerHTML = `<span>${reportGroupLabels[group]}</span>`;
+  return heading;
+}
+
+function insertGroupSeparators(container, entries, createSeparator) {
+  container.querySelectorAll(".report-group-row, .report-group-heading").forEach((node) => node.remove());
+
+  let lastGroup = null;
+  entries.forEach((entry) => {
+    const group = reportGroup(entry);
+    if (group !== lastGroup) {
+      container.appendChild(createSeparator(group));
+      lastGroup = group;
+    }
+    container.appendChild(entry);
+  });
+}
+
 function sortReportEntries() {
   const tableBody = document.querySelector(".speaker-table tbody");
   const cards = [...speakerList.querySelectorAll(".speaker-card")];
-  const rows = [...tableBody.querySelectorAll("tr")];
+  const rows = [...tableBody.querySelectorAll("tr[data-report-id]")];
 
-  rows.sort(compareEntries).forEach((row) => tableBody.appendChild(row));
-  cards.sort(compareEntries).forEach((card) => speakerList.appendChild(card));
+  insertGroupSeparators(tableBody, rows.sort(compareEntries), createTableGroupRow);
+  insertGroupSeparators(speakerList, cards.sort(compareEntries), createCardGroupHeading);
+}
+
+function updateGroupSeparators(cards) {
+  speakerList.querySelectorAll(".report-group-heading").forEach((heading) => {
+    const group = Number(heading.dataset.reportGroup);
+    heading.hidden = !cards.some((card) => !card.hidden && reportGroup(card) === group);
+  });
+
+  document.querySelectorAll(".speaker-table .report-group-row").forEach((row) => {
+    const group = Number(row.dataset.reportGroup);
+    row.hidden = !tableRows.some((tableRow) => !tableRow.hidden && reportGroup(tableRow) === group);
+  });
 }
 
 function updateResults() {
@@ -86,6 +152,8 @@ function updateResults() {
     const match = yearMatch && text.includes(query);
     row.hidden = !match || !visibleIds.has(row.dataset.reportId);
   });
+
+  updateGroupSeparators(cards);
 
   if (resultCount) {
     resultCount.textContent = `${matches.length} speaker${matches.length === 1 ? "" : "s"}`;

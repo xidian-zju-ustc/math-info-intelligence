@@ -562,6 +562,32 @@ p {
   border-bottom: 0;
 }
 
+.report-group-row td {
+  padding: 20px 16px 10px;
+  border-bottom: 1px solid rgba(40, 116, 200, 0.22);
+  background: linear-gradient(180deg, rgba(237, 246, 255, 0.92), rgba(255, 255, 255, 0.76));
+}
+
+.report-group-row span,
+.report-group-heading span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #123b75;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.report-group-row span::after,
+.report-group-heading span::after {
+  content: "";
+  width: 64px;
+  height: 1px;
+  background: rgba(40, 116, 200, 0.36);
+}
+
 .table-status {
   display: inline-flex;
   padding: 3px 8px;
@@ -646,6 +672,27 @@ p {
 .speaker-list {
   display: grid;
   gap: 16px;
+}
+
+.speaker-table tr[hidden],
+.speaker-card[hidden],
+.report-group-row[hidden],
+.report-group-heading[hidden] {
+  display: none !important;
+}
+
+.report-group-heading {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(40, 116, 200, 0.22);
+}
+
+.report-group-heading:first-child {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: 0;
 }
 
 .speaker-card {
