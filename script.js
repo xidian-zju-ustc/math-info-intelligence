@@ -1,9 +1,10 @@
 const speakerList = document.querySelector("#speakerList");
 const searchInput = document.querySelector("#speakerSearch");
 const yearFilter = document.querySelector("#yearFilter");
-const prevPageButton = document.querySelector("#prevPage");
-const nextPageButton = document.querySelector("#nextPage");
-const pageInfo = document.querySelector("#pageInfo");
+const prevPageButtons = document.querySelectorAll(".prev-page");
+const nextPageButtons = document.querySelectorAll(".next-page");
+const pageInfoElements = document.querySelectorAll(".page-info");
+const reportHeading = document.querySelector(".report-section > .section-heading");
 const tableRows = [...document.querySelectorAll(".speaker-table tbody tr[data-report-id]")];
 let currentPage = 1;
 const previousPageSize = 10;
@@ -180,9 +181,15 @@ function updateResults() {
 
   updateGroupSeparators();
 
-  if (pageInfo) pageInfo.textContent = `Previous Talks Page ${currentPage} / ${totalPages}`;
-  if (prevPageButton) prevPageButton.disabled = currentPage <= 1;
-  if (nextPageButton) nextPageButton.disabled = currentPage >= totalPages;
+  pageInfoElements.forEach((element) => {
+    element.textContent = `Previous Talks Page ${currentPage} / ${totalPages}`;
+  });
+  prevPageButtons.forEach((button) => {
+    button.disabled = currentPage <= 1;
+  });
+  nextPageButtons.forEach((button) => {
+    button.disabled = currentPage >= totalPages;
+  });
 }
 
 function resetAndUpdate() {
@@ -194,13 +201,32 @@ if (searchInput) {
   sortReportEntries();
   searchInput.addEventListener("input", resetAndUpdate);
   yearFilter?.addEventListener("change", resetAndUpdate);
-  prevPageButton?.addEventListener("click", () => {
-    currentPage = Math.max(1, currentPage - 1);
-    updateResults();
+  prevPageButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      currentPage = Math.max(1, currentPage - 1);
+      updateResults();
+    });
   });
-  nextPageButton?.addEventListener("click", () => {
-    currentPage += 1;
-    updateResults();
+  nextPageButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      currentPage += 1;
+      updateResults();
+      if (index === 0 && reportHeading) {
+        const siteHeader = document.querySelector(".site-header");
+        const headerHeight = siteHeader ? siteHeader.offsetHeight : 0;
+        const targetTop = reportHeading.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+        window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+      }
+      if (index === 1) {
+        const previousTalksHeading = speakerList.querySelector('.report-group-heading[data-report-group="1"]');
+        if (previousTalksHeading) {
+          const siteHeader = document.querySelector(".site-header");
+          const headerHeight = siteHeader ? siteHeader.offsetHeight : 0;
+          const targetTop = previousTalksHeading.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+          window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+        }
+      }
+    });
   });
   updateResults();
 }
